@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+  #启动注册中心eureka-server集群 集中管理/服务注册/服务发现
+  register-center1:
+    image: lvqiang/register-center
+    ports:
+      - "8761:8761"
+    environment:
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://register-center2:8762/eureka/,http://register-center3:8763/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+
+  register-center2:
+    image: lvqiang/register-center
+    ports:
+      - "8762:8761"
+    environment:
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://register-center1:8761/eureka/,http://register-center3:8763/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+
+  register-center3:
+    image: lvqiang/register-center
+    ports:
+      - "8763:8761"
+    environment:
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://register-center1:8761/eureka/,http://register-center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker

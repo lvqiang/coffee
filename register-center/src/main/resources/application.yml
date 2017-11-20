@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: register-center
+
+---
+spring:
+  profiles: docker
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: ${ADDITIONAL_EUREKA_SERVER_LIST}
