@@ -1,19 +1,26 @@
-spring:
-  application:
-    name: register-center
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
 ---
 spring:
   profiles: docker
 server:
-  port: 8761
+  port: ${{SERVER_PORT}:8761}
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${HOSTNAME}
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    fetch-registry: false
+    register-with-eureka: false
     server:
       waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
-      defaultZone: ${ADDITIONAL_EUREKA_SERVER_LIST}
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/,${ADDITIONAL_EUREKA_SERVER_LIST}

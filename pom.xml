@@ -9,6 +9,7 @@
     <version>1.0.0</version>
     <modules>
         <module>register-center</module>
+        <module>hello-service</module>
     </modules>
     <packaging>pom</packaging>
     <name>coffee</name>
