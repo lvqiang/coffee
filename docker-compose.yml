@@ -25,3 +25,29 @@ services:
       - SERVER_PORT=8762
     links:
       - center1
+
+  # 启动 hello-service
+  hello-service1:
+    image: lvqiang/hello-service
+    ports:
+      - "10000:10000"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT:10000
+    links:
+      - center1
+      - center2
+
+  hello-service2:
+    image: lvqiang/hello-service
+    ports:
+      - "10001:10001"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT:10001
+    links:
+      - center1
+      - center2
+

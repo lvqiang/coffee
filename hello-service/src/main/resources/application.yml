@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: hello-service
+server:
+  port: ${{SERVER_PORT}:10000}
+
+
+
+---
+spring:
+  profiles: docker
+server:
+  port: ${{SERVER_PORT}:10000}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}

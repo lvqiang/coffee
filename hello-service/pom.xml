@@ -49,7 +49,6 @@
                     <dockerDirectory>${project.basedir}/</dockerDirectory>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
                     </imageTags>
                     <forceTags>true</forceTags>
                     <resources>
