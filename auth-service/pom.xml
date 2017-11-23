@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>hello-service</artifactId>
+    <artifactId>auth-service</artifactId>
     <version>1.0.0</version>
-    <name>hello-service</name>
-    <description>say hello的简单微服务</description>
+    <name>auth-service</name>
+    <description>coffee的auth简单微服务</description>
 
     <dependencies>
         <dependency>
@@ -20,12 +20,12 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
     </dependencies>
 
@@ -36,7 +36,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.5.6.RELEASE</version>
+                <version>${spring-boot.version}</version>
                 <configuration>
                     <finalName>${project.name}</finalName>
                 </configuration>
@@ -73,4 +73,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

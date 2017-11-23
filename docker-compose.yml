@@ -26,6 +26,19 @@ services:
     links:
       - center1
 
+  auth:
+    hostname: auth
+    image: lvqiang/auth-service
+    ports:
+      - "19000:19000"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=19000
+    links:
+      - center1
+      - center2
+
   # 启动 hello-service
   hello-service1:
     image: lvqiang/hello-service
@@ -35,6 +48,7 @@ services:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT:10000
+      - AUTH_SERVER_LIST=http://auth:19000/user
     links:
       - center1
       - center2
@@ -47,6 +61,7 @@ services:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT:10001
+      - AUTH_SERVER_LIST=http://auth:19000/user
     links:
       - center1
       - center2

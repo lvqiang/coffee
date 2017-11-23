@@ -4,7 +4,12 @@ spring:
 server:
   port: ${{SERVER_PORT}:10000}
 
-
+security:
+  oauth2:
+    resource:
+      id: hello-service
+      user-info-uri: http://localhost:19000/user
+      prefer-token-info: false
 
 ---
 spring:
@@ -15,3 +20,10 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_LIST}
+
+security:
+  oauth2:
+    resource:
+      id: hello-service
+      user-info-uri: ${AUTH_SERVER_LIST}
+      prefer-token-info: false
