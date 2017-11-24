@@ -11,6 +11,7 @@
         <module>register-center</module>
         <module>hello-service</module>
         <module>auth-service</module>
+        <module>app-api-gateway</module>
     </modules>
     <packaging>pom</packaging>
     <name>coffee</name>

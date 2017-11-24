@@ -26,8 +26,22 @@ services:
     links:
       - center1
 
+  #启动网关gateway,可配置成集群,使用nginx进行负载 智能路由/安全控制/负载均衡
+  gateway:
+    container_name: app-api-gateway
+    image: lvqiang/app-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=8080
+    links:
+      - center1
+      - center2
+
   auth:
-    hostname: auth
+    container_name: auth-service
     image: lvqiang/auth-service
     ports:
       - "19000:19000"
@@ -41,6 +55,7 @@ services:
 
   # 启动 hello-service
   hello-service1:
+    container_name: hello-service1
     image: lvqiang/hello-service
     ports:
       - "10000:10000"
@@ -54,6 +69,7 @@ services:
       - center2
 
   hello-service2:
+    container_name: hello-service2
     image: lvqiang/hello-service
     ports:
       - "10001:10001"
