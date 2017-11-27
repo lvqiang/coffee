@@ -53,30 +53,16 @@ services:
       - center1
       - center2
 
-  # 启动 hello-service
-  hello-service1:
-    container_name: hello-service1
-    image: lvqiang/hello-service
+  # 启动 product-service
+  product-service:
+    container_name: product-service
+    image: lvqiang/product-service
     ports:
-      - "10000:10000"
+      - "11001:11001"
     environment:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT:10000
-      - AUTH_SERVER_LIST=http://auth:19000/user
-    links:
-      - center1
-      - center2
-
-  hello-service2:
-    container_name: hello-service2
-    image: lvqiang/hello-service
-    ports:
-      - "10001:10001"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT:10001
+      - SERVER_PORT:11001
       - AUTH_SERVER_LIST=http://auth:19000/user
     links:
       - center1

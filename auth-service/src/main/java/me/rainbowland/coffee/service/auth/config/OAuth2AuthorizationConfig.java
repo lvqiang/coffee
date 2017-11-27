@@ -52,7 +52,12 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 				.withClient("api")
 				.scopes("xx") //此处的scopes是无用的，可以随意设置
 				.secret("api")
-				.authorizedGrantTypes("password", "client_credentials", "refresh_token");
+				.authorizedGrantTypes("password", "client_credentials", "refresh_token")
+				.and()
+				.withClient("client")
+		        .authorizedGrantTypes("client_credentials")
+				.scopes("xxxx")
+		        .secret("client");
 	}
 
 }

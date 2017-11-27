@@ -16,10 +16,14 @@ zuul:
       path: /oauth/**
       sensitiveHeaders:
       serviceId: auth-service
-    order:
+    hello:
       path: /hello/**
       sensitiveHeaders:
       serviceId: hello-service
+    product:
+      path: /product/**
+      sensitiveHeaders:
+      serviceId: product-service
   add-proxy-headers: true
 
 ---
@@ -42,4 +46,8 @@ zuul:
       path: /hello/**
       sensitiveHeaders:
       serviceId: hello-service
+    product:
+      path: /product/**
+      sensitiveHeaders:
+      serviceId: product-service
   add-proxy-headers: true
