@@ -62,7 +62,7 @@ services:
     environment:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT:11001
+      - SERVER_PORT=11001
       - AUTH_SERVER_LIST=http://auth:19000/user
     links:
       - center1

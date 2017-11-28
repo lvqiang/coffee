@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: product-service
+
   h2:
     console:
       enabled: true
@@ -13,7 +16,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-
 
 server:
   port: 11000
@@ -37,7 +39,7 @@ spring:
       ddl-auto: none
 
 server:
-  port: ${SERVER_PORT}
+  port: ${{SERVER_PORT}:11000}
 
 eureka:
   client:
