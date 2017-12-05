@@ -54,8 +54,8 @@ services:
       - center2
 
   # 启动 product-service
-  product-service:
-    container_name: product-service
+  product-service1:
+    container_name: product-service1
     image: lvqiang/product-service
     ports:
       - "11001:11001"
@@ -63,6 +63,20 @@ services:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=docker
       - SERVER_PORT=11001
+      - AUTH_SERVER_LIST=http://auth:19000/user
+    links:
+      - center1
+      - center2
+
+  product-service2:
+    container_name: product-service2
+    image: lvqiang/product-service
+    ports:
+      - "11002:11002"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=11002
       - AUTH_SERVER_LIST=http://auth:19000/user
     links:
       - center1

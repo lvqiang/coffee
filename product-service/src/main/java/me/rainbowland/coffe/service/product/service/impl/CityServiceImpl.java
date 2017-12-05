@@ -1,6 +1,6 @@
 package me.rainbowland.coffe.service.product.service.impl;
 
-import me.rainbowland.coffe.service.product.model.City;
+import me.rainbowland.coffe.service.product.entity.City;
 import me.rainbowland.coffe.service.product.repository.CityRepository;
 import me.rainbowland.coffe.service.product.service.ICityService;
 import org.springframework.beans.factory.annotation.Autowired;

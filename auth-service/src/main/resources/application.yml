@@ -1,6 +1,20 @@
 spring:
   application:
     name: auth-service
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:user
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+    schema: classpath:db/schema.sql
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
 
 server:
   port: 19000
@@ -18,6 +32,21 @@ security:
 ---
 spring:
   profiles: docker
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:user
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+    schema: classpath:db/schema.sql
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
 server:
   port: ${{SERVER_PORT}:19000}
 eureka:

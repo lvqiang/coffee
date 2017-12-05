@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.auth.config;
 
-import me.rainbowland.coffee.service.auth.service.UserDetailsServiceImpl;
+import me.rainbowland.coffee.service.auth.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

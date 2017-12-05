@@ -1,6 +1,6 @@
 package me.rainbowland.coffe.service.product.service;
 
-import me.rainbowland.coffe.service.product.model.City;
+import me.rainbowland.coffe.service.product.entity.City;
 
 import java.util.List;
 
