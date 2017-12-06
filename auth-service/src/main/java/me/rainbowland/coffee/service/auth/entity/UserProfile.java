@@ -1,12 +1,10 @@
 package me.rainbowland.coffee.service.auth.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
@@ -19,7 +17,6 @@ import javax.validation.constraints.Size;
 public class UserProfile extends AbstractEntity{
 
 	@Id
-	@GeneratedValue
 	private Long id;
 
 	@Size(max = 256)

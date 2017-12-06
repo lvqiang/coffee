@@ -1,17 +1,14 @@
 package me.rainbowland.coffee.service.auth.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by lvqiang on 2017/11/22.
@@ -19,8 +16,6 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
-@AllArgsConstructor
-@NoArgsConstructor
 public class User extends AbstractEntity {
 
 	@Id
@@ -40,21 +35,12 @@ public class User extends AbstractEntity {
 	@Column(name = "openid",length = 64, unique = true, nullable = false)
 	private String openId;
 
-	@Size(max = 256)
-	@Column(name = "nickname", length = 256)
-	private String nickname;
-
-	@Size(max = 256)
-	@Column(name = "image_url", length = 256)
-	private String imageUrl;
-
 	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<Role> roles = new HashSet<>();
 
 	@Transient
 	private Set<GrantedAuthority> authorities = new HashSet<>();
-
 
 	public Set<GrantedAuthority> getAuthorities() {
 		Set<GrantedAuthority> userAuthotities = new HashSet<>();

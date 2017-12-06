@@ -1,5 +1,6 @@
 package me.rainbowland.coffee.service.auth.service.impl;
 
+import me.rainbowland.coffee.service.auth.entity.AuthUserDetail;
 import me.rainbowland.coffee.service.auth.entity.User;
 import me.rainbowland.coffee.service.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return realUser.map(user -> {
 			Set<GrantedAuthority> grantedAuthorities = user.getAuthorities();
-			return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+			return new AuthUserDetail(user.getId(), user.getUsername(), user.getPassword(), user.getOpenId(), grantedAuthorities);
 		}).orElseThrow(() -> new UsernameNotFoundException("用户" + openId + "不存在!"));
 	}
 }
