@@ -1,22 +1,20 @@
 package me.rainbowland.coffee.service.coupon.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by lvqiang on 2017/12/6.
  */
 @Data
-public class AuthUserDetail extends org.springframework.security.core.userdetails.User {
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AuthUserDetail {
 
 	private Long id;
 	private String openId;
-
-	public AuthUserDetail(Long id, String username, String password, String openId, Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, true, true, true, true, authorities);
-		this.id = id;
-		this.openId = openId;
-	}
+	private String username;
 }

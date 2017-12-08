@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.coupon.controller;
 
-import me.rainbowland.coffee.service.coupon.entity.CouponMemeber;
+import me.rainbowland.coffee.service.coupon.entity.CouponMember;
 import me.rainbowland.coffee.service.coupon.service.CouponMemberService;
 import me.rainbowland.coffee.service.coupon.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CouponMemberController {
 	private CouponMemberService couponMemberService;
 
 	@GetMapping(value = "/listByUser")
-	public List<CouponMemeber> listByUser() {
+	public List<CouponMember> listByUser() {
 		long userId = SecurityUtils.getCurrentUserUsername().getId();
 		return couponMemberService.loadUserCouponList(userId);
 	}

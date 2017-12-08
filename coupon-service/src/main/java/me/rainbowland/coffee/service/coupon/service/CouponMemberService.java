@@ -1,7 +1,6 @@
 package me.rainbowland.coffee.service.coupon.service;
 
-import me.rainbowland.coffee.service.coupon.entity.CouponMemeber;
-
+import me.rainbowland.coffee.service.coupon.entity.CouponMember;
 import java.util.List;
 
 /**
@@ -9,5 +8,5 @@ import java.util.List;
  */
 public interface CouponMemberService {
 
-	List<CouponMemeber> loadUserCouponList(Long userId);
+	List<CouponMember> loadUserCouponList(Long userId);
 }

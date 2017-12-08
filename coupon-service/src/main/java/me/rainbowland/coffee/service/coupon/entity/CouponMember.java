@@ -15,14 +15,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class CouponMemeber extends AbstractAuditing {
+public class CouponMember extends AbstractAuditing {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
 	@Column(name = "user_id", nullable = false)
-	private Integer userId;
+	private Long userId;
 
 	@Size(max = 32)
 	@Column(name = "name", nullable = false)

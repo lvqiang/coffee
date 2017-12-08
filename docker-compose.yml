@@ -83,7 +83,7 @@ services:
       - center2
 
   # 启动 coupon-service
-  product-service1:
+  coupon-service1:
     container_name: coupon-service1
     image: lvqiang/coupon-service
     ports:
