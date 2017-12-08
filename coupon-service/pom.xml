@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>product-service</artifactId>
+    <artifactId>coupon-service</artifactId>
     <version>1.0.0</version>
-    <name>product-service</name>
-    <description>咖啡基础产品服务模块</description>
+    <name>coupon-service</name>
+    <description>咖啡优惠券服务模块</description>
 
     <dependencies>
         <dependency>
@@ -48,7 +48,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <version>1.5.6.RELEASE</version>
                 <configuration>
                     <finalName>${project.name}</finalName>
                 </configuration>
@@ -85,4 +85,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

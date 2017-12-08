@@ -24,6 +24,10 @@ zuul:
       path: /product/**
       sensitiveHeaders:
       serviceId: product-service
+    coupon:
+      path: /coupon/**
+      sensitiveHeaders:
+      serviceId: coupon-service
   add-proxy-headers: true
 
 ---
@@ -50,4 +54,8 @@ zuul:
       path: /product/**
       sensitiveHeaders:
       serviceId: product-service
+    coupon:
+      path: /coupon/**
+      sensitiveHeaders:
+      serviceId: coupon-service
   add-proxy-headers: true

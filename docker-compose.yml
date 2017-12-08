@@ -82,3 +82,18 @@ services:
       - center1
       - center2
 
+  # 启动 coupon-service
+  product-service1:
+    container_name: coupon-service1
+    image: lvqiang/coupon-service
+    ports:
+      - "12001:12001"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=12001
+      - AUTH_SERVER_LIST=http://auth:19000/user
+    links:
+      - center1
+      - center2
+
