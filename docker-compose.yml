@@ -97,3 +97,18 @@ services:
       - center1
       - center2
 
+
+  # 启动 order-service
+  order-service1:
+    container_name: order-service1
+    image: lvqiang/order-service
+    ports:
+      - "13001:13001"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=docker
+      - SERVER_PORT=13001
+      - AUTH_SERVER_LIST=http://auth:19000/user
+    links:
+      - center1
+      - center2
