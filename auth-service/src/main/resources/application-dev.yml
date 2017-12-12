@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: oauth-service
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:user
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+    schema: classpath:db/schema.sql
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+server:
+  port: ${{SERVER_PORT}:19000}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}
+  instance:
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ip-address: 192.168.99.100
+    prefer-ip-address: true
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3

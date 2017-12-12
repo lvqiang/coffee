@@ -49,6 +49,7 @@
                     <imageName>lvqiang/${project.name}:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}/</dockerDirectory>
                     <imageTags>
+                        <imageTag>latest</imageTag>
                         <imageTag>${project.version}</imageTag>
                     </imageTags>
                     <forceTags>true</forceTags>
