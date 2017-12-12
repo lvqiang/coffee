@@ -1,7 +1,5 @@
 package me.rainbowland.coffee.service.order.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,9 +17,8 @@ public class OrderSnapItem extends AbstractAuditing {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "order_snap_id")
-	private OrderSnap orderSnap;
+	@Column(name = "order_snap_id")
+	private Long orderSnapId;
 
 	@Column(name = "name", nullable = false, length = 32)
 	private String name;

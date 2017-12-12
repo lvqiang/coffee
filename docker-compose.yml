@@ -26,21 +26,8 @@ services:
     links:
       - center1
 
-  #启动网关gateway,可配置成集群,使用nginx进行负载 智能路由/安全控制/负载均衡
-  gateway:
-    container_name: app-api-gateway
-    image: lvqiang/app-api-gateway
-    ports:
-      - "8080:8080"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT=8080
-    links:
-      - center1
-      - center2
-
-  auth:
+  #启动auth-service服务
+  auth-service:
     container_name: auth-service
     image: lvqiang/auth-service
     ports:
@@ -53,62 +40,3 @@ services:
       - center1
       - center2
 
-  # 启动 product-service
-  product-service1:
-    container_name: product-service1
-    image: lvqiang/product-service
-    ports:
-      - "11001:11001"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT=11001
-      - AUTH_SERVER_LIST=http://auth:19000/user
-    links:
-      - center1
-      - center2
-
-  product-service2:
-    container_name: product-service2
-    image: lvqiang/product-service
-    ports:
-      - "11002:11002"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT=11002
-      - AUTH_SERVER_LIST=http://auth:19000/user
-    links:
-      - center1
-      - center2
-
-  # 启动 coupon-service
-  coupon-service1:
-    container_name: coupon-service1
-    image: lvqiang/coupon-service
-    ports:
-      - "12001:12001"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=docker
-      - SERVER_PORT=12001
-      - AUTH_SERVER_LIST=http://auth:19000/user
-    links:
-      - center1
-      - center2
-
-
-  # 启动 order-service
-  order-service1:
-    container_name: order-service1
-    image: lvqiang/order-service
-    ports:
-      - "13001:13001"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=dev
-      - SERVER_PORT=13001
-      - AUTH_SERVER_LIST=http://auth:19000/user
-    links:
-      - center1
-      - center2

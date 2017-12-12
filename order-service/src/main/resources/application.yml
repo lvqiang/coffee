@@ -18,3 +18,17 @@ spring:
       ddl-auto: none
 server:
   port: 13000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://center1:8761/eureka/,http://center2:8762/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+
+security:
+  oauth2:
+    resource:
+      id: order-service
+      user-info-uri: http://auth:19000/user
+      prefer-token-info: false

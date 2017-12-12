@@ -2,8 +2,6 @@ package me.rainbowland.coffee.service.order.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -52,9 +50,8 @@ public class OrderSnap extends AbstractAuditing {
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
-	@OneToMany(mappedBy="orderSnap")
-	@Cascade(value = {CascadeType.ALL})
-	@LazyCollection(LazyCollectionOption.EXTRA)
+	@OneToMany
+	@JoinColumn(name = "order_snap_id")
 	private Set<OrderSnapItem>  orderSnapItems = new HashSet<>();
 
 }
