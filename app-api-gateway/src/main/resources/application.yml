@@ -58,4 +58,8 @@ zuul:
       path: /coupon/**
       sensitiveHeaders:
       serviceId: coupon-service
+    order-service:
+      path: /order/**
+      sensitiveHeaders:
+      serviceId: order-service
   add-proxy-headers: true

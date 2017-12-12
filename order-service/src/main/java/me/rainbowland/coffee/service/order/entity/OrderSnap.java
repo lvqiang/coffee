@@ -2,8 +2,11 @@ package me.rainbowland.coffee.service.order.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +16,7 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Order extends AbstractAuditing {
+public class OrderSnap extends AbstractAuditing {
 
 	@Id
 	@GeneratedValue
@@ -49,7 +52,9 @@ public class Order extends AbstractAuditing {
 	@Column(name = "status", nullable = false)
 	private Integer status;
 
-	@OneToMany(mappedBy = "order", orphanRemoval = true)
-	private Set<OrderItem>  orderItems = new HashSet<>();
+	@OneToMany(mappedBy="orderSnap")
+	@Cascade(value = {CascadeType.ALL})
+	@LazyCollection(LazyCollectionOption.EXTRA)
+	private Set<OrderSnapItem>  orderSnapItems = new HashSet<>();
 
 }

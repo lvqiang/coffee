@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.order.controller;
 
-import me.rainbowland.coffee.service.order.entity.Order;
+import me.rainbowland.coffee.service.order.entity.OrderSnap;
 import me.rainbowland.coffee.service.order.service.OrderService;
 import me.rainbowland.coffee.service.order.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class OrderController {
 	private OrderService orderService;
 
 	@GetMapping(value = "/listByUser")
-	public List<Order> listByUser() {
+	public List<OrderSnap> listByUser() {
 		long userId = SecurityUtils.getCurrentUserUsername().getId();
 		return orderService.loadUserOrderList(userId);
 	}
