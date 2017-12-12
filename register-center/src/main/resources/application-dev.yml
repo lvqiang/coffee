@@ -1,11 +1,14 @@
+spring:
+  profiles: dev
+
 server:
-  port: 8761
+  port: ${{SERVER_PORT}:8761}
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${HOSTNAME}
     instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
-    environment: localhost
+    environment: dev
   client:
     fetch-registry: false
     register-with-eureka: false
