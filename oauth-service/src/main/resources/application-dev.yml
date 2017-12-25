@@ -15,6 +15,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+    username: guest
+    password: guest
 
 server:
   port: ${{SERVER_PORT}:19000}

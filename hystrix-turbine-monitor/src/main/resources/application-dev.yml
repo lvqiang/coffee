@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: hystrix-turbine-monitor
+  profiles: dev
+  rabbitmq:
+    port: 5672
+    username: guest
+    password: guest
+    host: 192.168.99.100
+
+info:
+  description: 监控数据聚合
+
+server:
+  port: ${{SERVER_PORT}:5555}
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ipAddress: 192.168.99.100
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}

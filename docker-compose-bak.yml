@@ -35,24 +35,32 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=8763
 
-  #启动user-service服务
-  user-service1:
-    container_name: user-service1
-    image: lvqiang/user-service
+  # 启动rabbitmq作为消息中间件
+  rabbitmq:
+    container_name: rabbitmq
+    image: docker.io/rabbitmq:3-management
     ports:
-      - "10001:10001"
-    environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/,http://center3:8763/eureka/
-      - SPRING_PROFILES_ACTIVE=dev
-      - SERVER_PORT=10001
+      - "5672:5672"
+      - "15672:15672"
 
-  user-service2:
-    container_name: user-service2
-    image: lvqiang/user-service
+  #启动auth-service服务
+  auth-service1:
+    container_name: auth-service1
+    image: lvqiang/auth-service
     ports:
-      - "10002:10002"
+      - "19001:19001"
     environment:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/,http://center3:8763/eureka/
       - SPRING_PROFILES_ACTIVE=dev
-      - SERVER_PORT=10002
+      - SERVER_PORT=19001
+
+  auth-service2:
+    container_name: auth-service2
+    image: lvqiang/auth-service
+    ports:
+      - "19002:19002"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/,http://center3:8763/eureka/
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=19002
 

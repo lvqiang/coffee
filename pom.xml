@@ -10,11 +10,13 @@
     <modules>
         <module>register-center</module>
         <module>hello-service</module>
-        <module>auth-service</module>
+        <module>oauth-service</module>
         <module>app-api-gateway</module>
         <module>product-service</module>
         <module>coupon-service</module>
         <module>order-service</module>
+        <module>hystrix-turbine-monitor</module>
+        <module>user-service</module>
     </modules>
     <packaging>pom</packaging>
     <name>coffee</name>
@@ -27,6 +29,8 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Dalston.SR4</spring-cloud.version>
         <spring-boot.version>1.5.6.RELEASE</spring-boot.version>
+        <swagger.version>2.7.0</swagger.version>
+        <modelmapper.version>0.7.7</modelmapper.version>
     </properties>
 
     <dependencyManagement>
@@ -50,11 +54,27 @@
                 <artifactId>lombok</artifactId>
                 <version>1.12.2</version>
             </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${modelmapper.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <finalName>gzdtl-boot-common</finalName>
+        <defaultGoal>compile</defaultGoal>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -64,8 +84,44 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <finalName>${project.name}</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <imageName>lvqiang/${project.name}:${project.version}</imageName>
+                    <dockerDirectory>${project.basedir}/</dockerDirectory>
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+                    <forceTags>true</forceTags>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}</include>
+                        </resource>
+                    </resources>
+                    <dockerHost>https://192.168.99.100:2376</dockerHost>
+                    <dockerCertPath>/Users/lvqiang/.docker/machine/machines/default</dockerCertPath>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
-
 </project>
