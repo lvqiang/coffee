@@ -8,5 +8,5 @@ public interface UserService {
 
     UserDto createUser(CreateUserDto createUserDto);
 
-    UserDto findUserByOpenId(String openId);
+    UserDto findUser(String id);
 }

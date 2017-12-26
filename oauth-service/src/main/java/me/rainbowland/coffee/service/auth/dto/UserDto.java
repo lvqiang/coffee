@@ -1,4 +1,4 @@
-package me.rainbowland.coffee.service.user.dto;
+package me.rainbowland.coffee.service.auth.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,13 +12,6 @@ import java.util.List;
  */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-		"id",
-		"nickname",
-		"imageUrl",
-		"couponNum",
-		"coffeeNum",
-		"beanNum"})
 public class UserDto {
 
 	@JsonProperty("id")
@@ -29,18 +22,6 @@ public class UserDto {
 
 	@JsonProperty("nickname")
 	private String nickname;
-
-	@JsonProperty("imageUrl")
-	private String imageUrl;
-
-	@JsonProperty("couponNum")
-	private Integer couponNum;
-
-	@JsonProperty("coffeeNum")
-	private Integer coffeeNum;
-
-	@JsonProperty("beanNum")
-	private Integer beanNum;
 
 	@JsonProperty("authorities")
 	private List<AuthorityDto> authorities;

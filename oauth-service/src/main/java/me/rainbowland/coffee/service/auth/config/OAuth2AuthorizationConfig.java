@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.auth.config;
 
-import me.rainbowland.coffee.service.auth.service.impl.UserDetailsServiceImpl;
+import me.rainbowland.coffee.service.auth.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new UserDetailsServiceImpl();
+		return new CustomUserDetailsService();
 	}
 
 	@Override

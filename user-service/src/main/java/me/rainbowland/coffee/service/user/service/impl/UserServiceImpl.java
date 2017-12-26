@@ -29,14 +29,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public UserDto createUser(CreateUserDto createUserDto) {
-		Optional.ofNullable(userRepository.findOneByOpenId(createUserDto.getOpenId()))
+		Optional.ofNullable(userRepository.findOne(createUserDto.getId()))
 				.ifPresent(user -> {
-					throw new RuntimeException(String.format("user(login_name = %s) already exists.", createUserDto.getOpenId()));
+					throw new RuntimeException(String.format("user(login_name = %s) already exists.", createUserDto.getId()));
 				});
 		User user = modelMapper.map(createUserDto, User.class);
-		user.setPassword(new BCryptPasswordEncoder().encode(createUserDto.getOpenId()));
+		user.setId(createUserDto.getId());
+		user.setPassword(new BCryptPasswordEncoder().encode(createUserDto.getId()));
 		Authority authority = new Authority();
-		authority.setValue("default");
+		authority.setValue("AUTHORITY_USER");
 		user.addAuthority(authority);
 		userRepository.save(user);
 
@@ -45,9 +46,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto findUserByOpenId(String openId) {
-		User user = Optional.ofNullable(userRepository.findOneByOpenId(openId))
-				.orElseThrow(() -> new RuntimeException(String.format("user %s not found", openId)));
+	public UserDto findUser(String id) {
+		User user = Optional.ofNullable(userRepository.findOne(id))
+				.orElseThrow(() -> new RuntimeException(String.format("user %s not found", id)));
 		return modelMapper.map(user, UserDto.class);
 	}
 }

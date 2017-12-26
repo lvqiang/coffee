@@ -28,8 +28,8 @@ public class UserController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ApiOperation(value = "获取用户信息")
-	public UserDto loadUserByOpenId(@ApiParam(name = "open_id", value = "用户open_id", required = true) @RequestParam("open_id") String openId) {
-		return userService.findUserByOpenId(openId);
+	public UserDto loadUserById(@RequestHeader("x_user_id") String id) {
+		return userService.findUser(id);
 	}
 
 }

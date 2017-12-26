@@ -23,13 +23,7 @@ import java.util.List;
 public class User extends AbstractEntity {
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
 	private String id;
-
-	@Size(min = 1, max = 64)
-	@Column(name = "open_id", length = 64, unique = true, nullable = false)
-	private String openId;
 
 	@Size(min = 60, max = 60)
 	@Column(length = 60, nullable = false)

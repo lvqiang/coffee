@@ -15,10 +15,10 @@ import java.io.Serializable;
 @ApiModel(value = "CreateUserDto", description = "用户创建信息")
 public class CreateUserDto implements Serializable {
 
-	@JsonProperty("open_id")
-	@NotNull(message = "'open_id' should not be null")
+	@JsonProperty("id")
+	@NotNull(message = "'id' should not be null")
 	@ApiModelProperty(value = "微信openId", position = 1, required = true)
-	private String openId;
+	private String id;
 
 	@JsonProperty("nickname")
 	@NotNull(message = "'nickname' should not be null")

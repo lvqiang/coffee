@@ -9,7 +9,7 @@ services:
       - "8761:8761"
     environment:
       - HOSTNAME=center1
-      - ADDITIONAL_EUREKA_SERVER_LIST=http://center2:8762/eureka/,http://center3:8763/eureka/
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=8761
 
@@ -20,20 +20,9 @@ services:
       - "8762:8762"
     environment:
       - HOSTNAME=center2
-      - ADDITIONAL_EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center3:8763/eureka/
+      - ADDITIONAL_EUREKA_SERVER_LIST=http://center1:8761/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=8762
-
-  center3:
-    hostname: center3
-    image: lvqiang/register-center
-    ports:
-      - "8763:8763"
-    environment:
-      - HOSTNAME=center3
-      - ADDITIONAL_EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
-      - SPRING_PROFILES_ACTIVE=dev
-      - SERVER_PORT=8763
 
   #启动user-service服务
   user-service1:
@@ -42,7 +31,7 @@ services:
     ports:
       - "10001:10001"
     environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/,http://center3:8763/eureka/
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=10001
 
@@ -52,7 +41,17 @@ services:
     ports:
       - "10002:10002"
     environment:
-      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/,http://center3:8763/eureka/
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=10002
 
+  #启动oauth-service服务
+  oauth-service1:
+    container_name: oauth-service1
+    image: lvqiang/oauth-service
+    ports:
+      - "8001:8001"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=8001

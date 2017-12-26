@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.auth.config;
 
-import me.rainbowland.coffee.service.auth.service.impl.UserDetailsServiceImpl;
+import me.rainbowland.coffee.service.auth.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,7 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public UserDetailsService userDetailsService(){
-		return new UserDetailsServiceImpl();
+		return new CustomUserDetailsService();
 	}
 
 	@Bean

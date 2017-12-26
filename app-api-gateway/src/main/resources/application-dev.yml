@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: app-api-gateway
+
+server:
+  port: ${{SERVER_PORT}:8080}
+
+zuul:
+  ignored-services: '*'
+  sensitive-headers: Cookie,Set-Cookie,Authorization
+  retryable: true
+  routes:
+    auth:
+      path: /uaa/**
+      service-id: oauth-service
+      strip-prefix: false
+    user:
+      path: /users/**
+      service-id: user-service
+      strip-prefix: false
+  add-proxy-headers: true
+
+management:
+  security:
+    enabled: false
+
+security:
+  basic:
+    enabled: false
+  ignored: /uaa/oauth/token/**
+  oauth2:
+    client:
+      client-id: api
+      client-secret: api
+      access-token-uri: http://192.168.99.100:8001/uaa/oauth/token
+    resource:
+      token-info-uri: http://192.168.99.100:8001/uaa/oauth/check_token
+
+ribbon:
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 80000

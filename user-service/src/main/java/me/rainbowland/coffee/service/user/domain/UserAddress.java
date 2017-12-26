@@ -19,7 +19,7 @@ public class UserAddress extends AbstractEntity{
 
 	@Id
 	@GeneratedValue
-	private String id;
+	private long id;
 
 	@Column(name = "user_id", nullable = false)
 	private String userId;
