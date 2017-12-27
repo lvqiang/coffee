@@ -8,5 +8,5 @@ import java.util.List;
  */
 public interface CouponMemberService {
 
-	List<CouponMember> loadUserCouponList(Long userId);
+	List<CouponMember> loadByUserId(String userId);
 }

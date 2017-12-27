@@ -15,6 +15,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		http
 				.authorizeRequests()
 				.antMatchers("/users/**").hasAuthority("AUTHORITY_USER")
+				.antMatchers("/product/**").hasAuthority("AUTHORITY_USER")
+				.antMatchers("/coupon/**").hasAuthority("AUTHORITY_USER")
+				.antMatchers("/order/**").hasAuthority("AUTHORITY_USER")
 				.anyRequest().authenticated();
 	}
 

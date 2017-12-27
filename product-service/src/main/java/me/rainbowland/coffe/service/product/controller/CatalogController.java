@@ -1,10 +1,12 @@
 package me.rainbowland.coffe.service.product.controller;
 
-import me.rainbowland.coffe.service.product.entity.Catalog;
-import me.rainbowland.coffe.service.product.service.ICatalogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import me.rainbowland.coffe.service.product.domain.Catalog;
+import me.rainbowland.coffe.service.product.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,15 +15,17 @@ import java.util.List;
  * Created by lvqiang on 2017/11/21.
  */
 @RestController
-@RequestMapping("/catalog")
+@RequestMapping(value = "/catalogs")
+@Api(value = "/catalogs", description = "产品目录类别API")
 public class CatalogController {
 
 	@Autowired
-	private ICatalogService catalogService;
+	private CatalogService catalogService;
 
-	@GetMapping("/availableList")
-	public List<Catalog> availableList(){
-		return catalogService.getAvailableList();
+	@RequestMapping(value = "/available", method = RequestMethod.GET)
+	@ApiOperation(value = "产品开通列表")
+	public List<Catalog> availableList() {
+		return catalogService.loadByStatus(1);
 	}
 
 }

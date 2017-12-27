@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.order.service.impl;
 
-import me.rainbowland.coffee.service.order.entity.OrderSnap;
+import me.rainbowland.coffee.service.order.domain.OrderSnap;
 import me.rainbowland.coffee.service.order.repository.OrderRepository;
 import me.rainbowland.coffee.service.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepository orderRepository;
 
 	@Override
-	public List<OrderSnap> loadUserOrderList(Long userId) {
+	public List<OrderSnap> loadByUserId(String userId) {
 		return orderRepository.findByUserId(userId);
 	}
 }

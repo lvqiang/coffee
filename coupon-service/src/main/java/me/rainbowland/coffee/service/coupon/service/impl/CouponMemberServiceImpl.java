@@ -18,7 +18,7 @@ public class CouponMemberServiceImpl implements CouponMemberService{
 	private CouponMemberRepository couponMemberRepository;
 
 	@Override
-	public List<CouponMember> loadUserCouponList(Long userId) {
+	public List<CouponMember> loadByUserId(String userId) {
 		return couponMemberRepository.findByUserId(userId);
 	}
 }

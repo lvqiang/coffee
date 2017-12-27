@@ -1,6 +1,9 @@
-package me.rainbowland.coffe.service.product.entity;
+package me.rainbowland.coffe.service.product.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -8,13 +11,15 @@ import javax.persistence.*;
  * Created by lvqiang on 2017/11/24.
  */
 @Entity
-@Table(name = "city")
 @Data
+@DynamicInsert
+@DynamicUpdate
+@EqualsAndHashCode(callSuper = false)
 public class City extends AbstractAuditing {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 
 	@Column(nullable = false)
 	private String cname;
@@ -23,5 +28,5 @@ public class City extends AbstractAuditing {
 	private String ename;
 
 	@Column(nullable = false)
-	private Integer status;
+	private int status;
 }

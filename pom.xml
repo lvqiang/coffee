@@ -9,7 +9,6 @@
     <version>1.0.0</version>
     <modules>
         <module>register-center</module>
-        <module>hello-service</module>
         <module>oauth-service</module>
         <module>app-api-gateway</module>
         <module>product-service</module>

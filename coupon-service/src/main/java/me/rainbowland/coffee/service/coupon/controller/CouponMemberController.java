@@ -1,12 +1,11 @@
 package me.rainbowland.coffee.service.coupon.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import me.rainbowland.coffee.service.coupon.entity.CouponMember;
 import me.rainbowland.coffee.service.coupon.service.CouponMemberService;
-import me.rainbowland.coffee.service.coupon.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,15 +13,16 @@ import java.util.List;
  * Created by lvqiang on 2017/12/8.
  */
 @RestController
-@RequestMapping(value = "/couponMember")
+@RequestMapping(value = "/members")
+@Api(value = "/members", description = "用户优惠券API")
 public class CouponMemberController {
 
 	@Autowired
 	private CouponMemberService couponMemberService;
 
-	@GetMapping(value = "/listByUser")
-	public List<CouponMember> listByUser() {
-		long userId = SecurityUtils.getCurrentUserUsername().getId();
-		return couponMemberService.loadUserCouponList(userId);
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	@ApiOperation(value = "用户优惠券列表")
+	public List<CouponMember> loadByUserId(@PathVariable("userId") String userId) {
+		return couponMemberService.loadByUserId(userId);
 	}
 }

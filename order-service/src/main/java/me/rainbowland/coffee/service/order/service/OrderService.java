@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.order.service;
 
-import me.rainbowland.coffee.service.order.entity.OrderSnap;
+import me.rainbowland.coffee.service.order.domain.OrderSnap;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface OrderService {
 
-	List<OrderSnap> loadUserOrderList(Long userId);
+	List<OrderSnap> loadByUserId(String userId);
 }

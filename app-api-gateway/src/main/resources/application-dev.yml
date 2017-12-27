@@ -5,18 +5,39 @@ spring:
 server:
   port: ${{SERVER_PORT}:8080}
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST}
+  instance:
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    ip-address: 192.168.99.100
+    prefer-ip-address: true
+
 zuul:
   ignored-services: '*'
   sensitive-headers: Cookie,Set-Cookie,Authorization
   retryable: true
   routes:
-    auth:
+    oauth:
       path: /uaa/**
       service-id: oauth-service
       strip-prefix: false
     user:
       path: /users/**
       service-id: user-service
+      strip-prefix: false
+    product:
+      path: /product/**
+      service-id: product-service
+      strip-prefix: false
+    coupon:
+      path: /coupon/**
+      service-id: coupon-service
+      strip-prefix: false
+    order:
+      path: /order/**
+      service-id: order-service
       strip-prefix: false
   add-proxy-headers: true
 

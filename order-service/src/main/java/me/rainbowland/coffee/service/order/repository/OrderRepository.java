@@ -1,6 +1,6 @@
 package me.rainbowland.coffee.service.order.repository;
 
-import me.rainbowland.coffee.service.order.entity.OrderSnap;
+import me.rainbowland.coffee.service.order.domain.OrderSnap;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ import java.util.List;
  */
 @Repository
 public interface OrderRepository extends JpaRepository<OrderSnap, Long> {
-	List<OrderSnap> findByUserId(Long userId);
+	List<OrderSnap> findByUserId(String userId);
 }

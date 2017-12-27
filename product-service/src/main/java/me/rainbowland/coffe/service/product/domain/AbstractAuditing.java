@@ -1,4 +1,4 @@
-package me.rainbowland.coffee.service.coupon.entity;
+package me.rainbowland.coffe.service.product.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

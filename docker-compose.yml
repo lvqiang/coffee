@@ -23,6 +23,8 @@ services:
       - ADDITIONAL_EUREKA_SERVER_LIST=http://center1:8761/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=8762
+    links:
+      - center1
 
   #启动user-service服务
   user-service1:
@@ -34,6 +36,9 @@ services:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=10001
+    links:
+      - center1
+      - center2
 
   user-service2:
     container_name: user-service2
@@ -44,6 +49,9 @@ services:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=10002
+    links:
+      - center1
+      - center2
 
   #启动oauth-service服务
   oauth-service1:
@@ -55,3 +63,6 @@ services:
       - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=8001
+    links:
+      - center1
+      - center2

@@ -1,7 +1,9 @@
-package me.rainbowland.coffee.service.order.entity;
+package me.rainbowland.coffee.service.order.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -13,15 +15,17 @@ import java.util.Set;
  */
 @Entity
 @Data
+@DynamicInsert
+@DynamicUpdate
 @EqualsAndHashCode(callSuper = false)
-public class OrderSnap extends AbstractAuditing {
+public class OrderSnap extends AbstractEntity {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private long id;
 
 	@Column(name = "user_id", nullable = false)
-	private Long userId;
+	private String userId;
 
 	@Column(name = "origin_fee", nullable = false)
 	private Integer originFee;
@@ -53,5 +57,4 @@ public class OrderSnap extends AbstractAuditing {
 	@OneToMany
 	@JoinColumn(name = "order_snap_id")
 	private Set<OrderSnapItem>  orderSnapItems = new HashSet<>();
-
 }

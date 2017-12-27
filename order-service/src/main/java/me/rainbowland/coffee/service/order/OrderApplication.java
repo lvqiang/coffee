@@ -3,14 +3,14 @@ package me.rainbowland.coffee.service.order;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
  * Created by lvqiang on 2017/11/21.
  */
-@EnableDiscoveryClient
 @SpringBootApplication
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableDiscoveryClient
+@EnableFeignClients
 public class OrderApplication {
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package me.rainbowland.coffee.service.coupon.entity;
+package me.rainbowland.coffee.service.order.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -10,14 +10,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by lvqiang on 2017/11/28.
+ * Created by lvqiang on 2017/12/5.
  */
 @MappedSuperclass
+@EntityListeners(AbstractEntity.class)
 @Data
-@EntityListeners(AbstractAuditing.class)
-public abstract class AbstractAuditing implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public abstract class AbstractEntity implements Serializable {
 
 	@CreatedDate
 	@Column(name = "created_by", updatable = false)

@@ -1,6 +1,6 @@
 package me.rainbowland.coffe.service.product.repository;
 
-import me.rainbowland.coffe.service.product.entity.Catalog;
+import me.rainbowland.coffe.service.product.domain.Catalog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
