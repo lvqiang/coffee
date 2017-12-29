@@ -16,6 +16,7 @@
         <module>order-service</module>
         <module>hystrix-turbine-monitor</module>
         <module>user-service</module>
+        <module>sleuth-zipkin-monitor</module>
     </modules>
     <packaging>pom</packaging>
     <name>coffee</name>

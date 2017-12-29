@@ -1,0 +1,24 @@
+version: "2"
+services:
+
+  # 启动hystrix-turbine-monitor  基于消息中间件的实时性能数据收集
+  hystrix-turbine-monitor:
+    container_name: hystrix-turbine-monitor
+    image: lvqiang/hystrix-turbine-monitor
+    ports:
+      - "8888:8888"
+      - "8989:8989"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=8888
+
+  # 启动sleuth-zipkin-monitor  基于消息中间件的实时调用链路收集
+  sleuth-zipkin-monitor:
+    container_name: sleuth-zipkin-monitor
+    image: lvqiang/sleuth-zipkin-monitor
+    ports:
+      - "9411:9411"
+    environment:
+      - EUREKA_SERVER_LIST=http://center1:8761/eureka/,http://center2:8762/eureka/
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=9411

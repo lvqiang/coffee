@@ -10,6 +10,11 @@ spring:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5Dialect
+  rabbitmq:
+    host: 192.168.99.100
+    port: 5672
+    username: admin
+    password: admin
 
 server:
   port: ${{SERVER_PORT}:10000}
